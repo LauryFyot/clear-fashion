@@ -1,10 +1,111 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="all">
     <title>👕 Clear Fahion | Environmentally & human-friendly clothes</title>
-  </head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/7be63d8904.js" crossorigin="anonymous"></script>
+</head>
   <body>
+    <nav class="navbar">
+      <div id="navbar-content">
+          <form class="search-bar" action="">
+              <input type="search" class="search" placeholder="Search ...">
+              <i class="fa fa-search"></i>
+          </form>
+          <div id="navbar-logo"><a href="#">ClearFashion</a></div>
+          <ul class="menu-list">
+              <div class="icon cancel-btn">
+                  <i class="fa fa-times"></i>
+              </div>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">Collection</a></li>
+              <li><a href="#">Page</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+          </ul>
+          <div class="shop-items">
+              <select name="show" class="language">
+                  <option value="eur">Eur</option>
+                  <option value="usd">Usd</option>
+              </select>
+              <i class="far fa-user"></i>
+              <!-- <i class="fas fa-shopping-cart"></i>fa fa-heart -->
+              <i class="fa fa-heart"></i>
+          </div>
+          <div class="icon menu-btn">
+              <i class="fas fa-bars"></i>
+          </div>
+      </div>
+  </nav>
+
+  <section class="banner">
+      <div class="banner-content">
+          <h2 class="banner-text">ClearFashion</h2>
+          <div class="gdf">
+              <div class="trait"></div>
+              <p>Un sélection de marques eco-responsables pour VOUS</p>
+              <div class="trait"></div>
+          </div>
+      </div>
+  </section>
+
+  <section class="gallery">
+    <div class="content">
+      <h2 class="section-title">Products</h2>
+      <div class="filters">
+        <div class="chkxfilter">
+          <input type="checkbox" id="reasonable-check">
+          <label for="reasonable-check">By reasonable price</label>
+        </div>
+        <div class="chkxfilter">
+          <input type="checkbox" id="recent-check">
+          <label for="recent-check">By recently released</label>
+        </div>
+        <div id="brand">
+          <!-- <label for="brand-select" id="ui">By brands:</label> -->
+          <select name="brand" id="brand-select">
+            <option value="all">All brands</option> 
+            <option value="loom">Loom</option>
+            <option value="adresse">Adresse</option>
+            <option value="coteleparis">Cotele Paris</option>
+            <option value="1083">1083</option>
+            <option value="dedicated">Dedicated</option>
+          </select>
+        </div>
+        <div id="sort">
+          <!-- <label for="sort-select">Sort:</label> -->
+          <select name="sort" id="sort-select">
+            <option value="null">Sort by ...</option>
+            <option value="price-asc">Cheaper</option>
+            <option value="price-desc">Expensive</option>
+            <option value="date-asc">Recently released</option>
+            <option value="date-desc">Anciently released</option>
+          </select>
+        </div>
+
+      </div>
+        
+        <div class="container">
+            <!-- <div class="row-gallery">
+                <div class="gallery-filter">
+                    <span class="filter-item active" data-filter="all">All</span>
+                    <span class="filter-item" data-filter="loom">Loom</span>
+                    <span class="filter-item" data-filter="adresse">Adresse</span>
+                    <span class="filter-item" data-filter="1083">1083</span>
+                    <span class="filter-item" data-filter="coteleparis">Cotele Paris</span>
+                    <span class="filter-item" data-filter="dedicated">Dedicated</span>
+                </div>
+            </div> -->
+            <div id="products">
+            </div>
+        </div>
+    </div>
+</section>
     <h1>Clear fashion</h1>
     <section id="options">
       <div id="show">
@@ -20,21 +121,21 @@
         <select name="page" id="page-select"> </select>
       </div>
       <div id="filters">
-        <span>By reasonable price</span>
-        <span>By recently released</span>
-        <div id="brand">
-          <label for="brand-select">By brands:</label>
-          <select name="brand" id="brand-select"> </select>
-        </div>
-      </div>
-      <div id="sort">
-        <label for="sort-select">Sort:</label>
-        <select name="sort" id="sort-select">
-          <option value="price-asc">Cheaper</option>
-          <option value="price-desc">Expensive</option>
-          <option value="date-asc">Recently released</option>
-          <option value="date-desc">Anciently released</option>
-        </select>
+        <!-- <label for="reasonable-check">By reasonable price</label>
+        <input type="checkbox" id="reasonable-check">
+        <label for="recent-check">By recently released</label>
+        <input type="checkbox" id="recent-check"> -->
+        <!-- <div id="brand">
+          <label for="brand-select" id="ui">By brands:</label>
+          <select name="brand" id="brand-select">
+            <option value="all">All</option> 
+            <option value="loom">Loom</option>
+            <option value="adresse">Adresse</option>
+            <option value="coteleparis">Cotele Paris</option>
+            <option value="1083">1083</option>
+            <option value="dedicated">Dedicated</option>
+          </select>
+        </div> -->
       </div>
     </section>
     <section id="indicators">
@@ -45,26 +146,26 @@
       </div>
       <div>
         <span>Number of new products</span>
-        <span>0</span>
+        <span id="nbDisplayedProducts">0</span>
       </div>
       <div>
         <span>p50 price value</span>
-        <span>0</span>
+        <span id="p50">0</span>
       </div>
       <div>
         <span>p90 price value</span>
-        <span>0</span>
+        <span id="p90">0</span>
       </div>
       <div>
         <span>p95 price value</span>
-        <span>0</span>
+        <span id="p95">0</span>
       </div>
       <div>
         <span>Last released date</span>
-        <span>2020-01-01</span>
+        <span id="last-release">2020-01-01</span>
       </div>
     </section>
-    <section id="products"></section>
+    <!-- <section id="products"></section> -->
     <script type="text/javascript" charset="UTF-8" src="portfolio.js"></script>
   </body>
 </html>

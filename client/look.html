@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="te8xt/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="all">
+    <title>👕 Clear Fahion | Environmentally & human-friendly clothes</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/7be63d8904.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div id="navbar-content">
+            <form class="search-bar" action="">
+                <input type="search" class="search" placeholder="Search ...">
+                <i class="fa fa-search"></i>
+            </form>
+            <div id="navbar-logo"><a href="#">ClearFashion</a></div>
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                    <i class="fa fa-times"></i>
+                </div>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Collection</a></li>
+                <li><a href="#">Page</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="shop-items">
+                <select name="show" class="language">
+                    <option value="eur">Eur</option>
+                    <option value="usd">Usd</option>
+                </select>
+                <i class="far fa-user"></i>
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="icon menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h2 class="banner-text">ClearFashion</h2>
+            <div class="gdf">
+                <div class="trait"></div>
+                <p>Un sélection de marques eco-responsables pour VOUS</p>
+                <div class="trait"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="content">
+            <h2 class="section-title">Album photos</h2>
+            <div class="container">
+                <div class="row-gallery">
+                    <div class="gallery-filter">
+                        <span class="filter-item active" data-filter="all">all</span>
+                        <span class="filter-item" data-filter="cuisine">cuisine</span>
+                        <span class="filter-item" data-filter="salon">salon</span>
+                        <span class="filter-item" data-filter="exterieur">exterieur</span>
+                    </div>
+                </div>
+                <div class="row-gallery">
+                    <div class="gallery-item exterieur">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=1" class="imggallery" onclick="onClick(this)" alt="exterieur">
+                        </div>
+                    </div>
+                    <div class="gallery-item cuisine">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=2" class="imggallery" onclick="onClick(this)" alt="cuisine">
+                        </div>
+                    </div>
+                    <div class="gallery-item salon">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=3" class="imggallery" onclick="onClick(this)" alt="salon">
+                        </div>
+                    </div>
+                    <div class="gallery-item cuisine">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=4" class="imggallery" onclick="onClick(this)" alt="cuisine">
+                        </div>
+                    </div>
+                    <div class="gallery-item salon">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=5" class="imggallery" onclick="onClick(this)" alt="salon">
+                        </div>
+                    </div>
+                    <div class="gallery-item cuisine">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=6" class="imggallery" onclick="onClick(this)" alt="cuisine">
+                        </div>
+                    </div>
+                    <div class="gallery-item exterieur">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=7" class="imggallery" onclick="onClick(this)" alt="exterieur">
+                        </div>
+                    </div>
+                    <div class="gallery-item salon">
+                        <div class="gallery-item-inner">
+                            <img src="https://picsum.photos/1000?random=8" class="imggallery" onclick="onClick(this)" alt="salon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="modalgallery" class="modal">  
+        <!-- onclick="this.style.display='none'" -->
+        <span class="close-modal" onclick="clickclose();">&times;</span>
+        <span class="left-modal" onclick="clickleft();">&LeftArrow;</span>
+        <span class="right-modal" onclick="clickright();">&rightarrow;</span>
+        <div class="modal-content">
+          <img id="imgzoom">
+          <div class="imgzoom-desciption">
+            <p id="imgzoom-text"></p>
+        </div>
+        </div>
+      </div>
+
+    <section class="temp1">
+            <video autoplay muted loop class="paris-video">
+                <source src="videos/paris.mp4" type="video/mp4">
+            </video>
+            <div class="paris-container">
+                <div class="content">
+                    <h2 class="section-title">Activités</h2>
+                    <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.
+                        Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.
+                        Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.
+                        Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.
+                        Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.</p>
+                </div>
+            </div>
+    </section>
+
+    <section class="tarifs">
+            <h2 class="section-title">Tarifs</h2>
+            <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur.</p>
+            <div class="patches-container">
+                <div class="patch" style="background-image: url('https://picsum.photos/500?random=9');">
+                    <h2 class="patch-title">Hiver</h2>
+                    <!-- <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos</p> -->
+                    <button>En savoir plus !</button>
+                    <div class="patch-desciption">
+                        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur.</p>
+                    </div>
+                </div>
+                <div class="patch" style="background-image: url('https://picsum.photos/500?random=10');">
+                    <h2 class="patch-title">Printemps</h2>
+                    <!-- <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos</p> -->
+                    <button>En savoir plus !</button>
+                    <div class="patch-desciption">
+                        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur.</p>
+                    </div>
+                </div>
+                <div class="patch" style="background-image: url('https://picsum.photos/500?random=11');">
+                    <h2 class="patch-title">Ete</h2>
+                    <!-- <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos</p> -->
+                    <button>En savoir plus !</button>
+                    <div class="patch-desciption">
+                        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur.</p>
+                    </div>
+                </div>
+                <div class="patch" style="background-image: url('https://picsum.photos/500?random=12');">
+                    <h2 class="patch-title">Automne</h2>
+                    <!-- <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos</p> -->
+                    <button>En savoir plus !</button>
+                    <div class="patch-desciption">
+                        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="estimtext">Estimez votre tarif</p>
+            <div class="calculateur">
+                <form action="php/gestion.php" method="POST">
+                    <div class="line-form">
+                    <div class="lala">
+                        <label>Arrivée :</label>
+                        <input class="today" name="fromdate" type="date">
+                    </div>
+                    <div class="lala">
+                        <label>Départ :</label>
+                        <input class="today" name="todate" type="date">
+                    </div>
+                    <div class="lala">
+                        <label>Adultes :</label>
+                        <input type="number" class="hey" name="nbchilds" min="0" max="10" value="0">
+                    </div>
+                    <div class="lala">
+                        <label>Enfants :</label>
+                        <input type="number" class="hey" name="nbadults" min="0" max="10" value="0">
+                    </div>
+                    </div>
+                    <input class="submit" type="submit" name="submit1" value="Tarif"></input>
+                </form>
+            </div>
+            <div class="apropos-items">
+                <div class="trait"></div>
+                <img class="apropos-item logogdf" src="img/gite_de_france_logo.png">
+                <img class="apropos-item episgdf" src="img/gite_de_france_epis.png">
+                <img class="apropos-item wifi" src="img/free_wifi.png">
+                <img class="apropos-item capagdf" src="img/gite_de_france_capacite.png">
+                <div class="trait"></div>
+            </div>
+    </section>
+
+    <section class="contact">
+        <div class="cover-contact">
+        <div class="content">
+            <h2 class="section-title">Contactez-nous</h2>
+            <form action="php/gestion.php" method="POST">
+                <div class="row">
+                    <div class="column">
+                        <p>Vos coordonnées</p>
+                        <input type="email" name="email" placeholder="E-mail * ..." required>  
+                        <input type="text" id="tel" name="tel" placeholder="Téléphone ..." required>
+                        <p>Votre séjour</p>
+                        <input class="today" type="date">
+                        <input class="today2" type="date">
+                        <div class="people">
+                            <div class="lala">
+                                <label for="tentacles">Adultes :</label>
+                                <input type="number" id="tentacles" name="tentacles" min="0" max="10" value="0">
+                            </div>
+                            <div class="lala">
+                                <label for="tentacles">Enfants :</label>
+                                <input type="number" id="tentacles" name="tentacles" min="0" max="10" value="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <input type="text" id="fname" name="firstname" placeholder="Prénom * ..." required>
+                        <input type="text" id="lname" name="lastname" placeholder="Nom * ..." required>
+                        <textarea id="subject" name="subject" placeholder="Message * ..." style="height:200px" required></textarea>
+                        <input type="submit" class="submit-btn" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </section>
+    <section class="maps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.316464023759!2d3.033500651138704!3d48.7185444183956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e8b30097f36815%3A0x610adee7e4cc4af3!2sG%C3%AEte%20de%20Chambonni%C3%A8re%20proche%20Disneyland%20Paris%20Provins%20-%2077!5e0!3m2!1sfr!2sca!4v1610837725063!5m2!1sfr!2sca" width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </section>
+
+    <footer>
+        <div class="content">
+            <h3>Gîte de Chambonnière</h3>
+            <p>8 rue de la Chambonnière, 77540, Le Plessis-Feu-Aussoux | 06.81.11.00.77 | Paris, Provins, Parc des Félins, Disneyland</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-phone-alt"></i></a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+            <p>Tous droits réservés ®</p>
+        </div>
+    </footer>
+    
+    
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const menu = document.querySelector(".menu-list");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        const menuBtn = document.querySelector(".menu-btn");
+
+        menuBtn.onclick = () => {
+            menu.classList.add("active")
+            menuBtn.classList.add("hide")
+        }
+
+        cancelBtn.onclick = () => {
+            menu.classList.remove("active")
+            menuBtn.classList.remove("hide")
+        }
+
+        window.onscroll = () => {
+            var logo = document.getElementById("navbar-logo");
+            this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+            this.scrollY > 20 ? logo.style.display = "none" : logo.style.display = "block";
+            // this.scrollY > 20 ? navbar.style.backgroundColor = white : console.log("coucou");
+        }
+    </script>
+
+    <script>
+            const filterContainer = document.querySelector(".gallery-filter"),
+    galleryItems = document.querySelectorAll(".gallery-item");
+
+    filterContainer.addEventListener("click", (event) =>{
+    if(event.target.classList.contains("filter-item")){
+        // deactivate existing active 'filter-item'
+        filterContainer.querySelector(".active").classList.remove("active");
+        // activate new 'filter-item'
+        event.target.classList.add("active");
+        const filterValue = event.target.getAttribute("data-filter");
+        galleryItems.forEach((item) =>{
+        if(item.classList.contains(filterValue) || filterValue === 'all'){
+            item.classList.remove("hide");
+            item.classList.add("show");
+        }
+        else{
+            item.classList.remove("show");
+            item.classList.add("hide");
+        }
+        });
+    }
+    });
+    </script>
+
+
+    <script>
+
+        var allimages = document.querySelectorAll(".imggallery");
+        var arrayimg = Array.from(allimages);
+
+        function onClick(element) {
+            console.log(arrayimg.indexOf(element));
+            document.getElementById("imgzoom").src = element.src;
+            document.getElementById("modalgallery").style.display = "block";
+            document.getElementById("imgzoom-text").textContent = element.alt;
+        }
+    </script>
+    <script>
+        var allimg = document.querySelectorAll(".imggallery");
+        var arrayimg = Array.from(allimg);
+        var actualimg = document.getElementById("imgzoom");
+        var BreakException = {};
+
+        function clickleft() {
+            arrayimg.forEach(function(el) {
+                if (el.src == actualimg.src) {
+                    var previous = (arrayimg.indexOf(el)-1)%arrayimg2.length;
+                    if (previous == -1) {previous = 7};
+                    console.log(previous);
+                    var previousimg = arrayimg[previous];
+                    document.getElementById("imgzoom").src = previousimg.src;
+                    document.getElementById("modalgallery").style.display = "block";
+                    document.getElementById("imgzoom-text").textContent = previousimg.alt;
+                    throw BreakException;
+                };
+            });
+        };
+    </script>
+    <script>
+        var allimg2 = document.querySelectorAll(".imggallery");
+        var arrayimg2 = Array.from(allimg2);
+        var actualimg2 = document.getElementById("imgzoom");
+        var BreakException = {};
+
+        function clickright() {
+            arrayimg2.forEach(function(el2) {
+                if (el2.src == actualimg2.src) {
+                    var next = (arrayimg2.indexOf(el2)+1)%arrayimg2.length;
+                    console.log(next);
+                    var nextimg = arrayimg2[next];
+                    document.getElementById("imgzoom").src = nextimg.src;
+                    document.getElementById("modalgallery").style.display = "block";
+                    document.getElementById("imgzoom-text").textContent = nextimg.alt;
+                    throw BreakException;
+                };
+            });
+        };
+    </script>
+    <script>
+        function clickclose() {
+            console.log("coucou");
+            document.getElementById("modalgallery").style.display = "none";
+        };
+    </script>
+</body>
+
+</html>
