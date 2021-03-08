@@ -1,8 +1,9 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const {'v5': uuidv5} = require('uuid');
 
 /**
- * Parse webpage e-shop
+ * Parse webpage restaurant
  * @param  {String} data - html response
  * @return {Array} pages to browse
  */
