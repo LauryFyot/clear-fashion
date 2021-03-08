@@ -101,6 +101,20 @@ async function mudJeansProducts(eshop) {
 // adresseProducts(eshopAdresse);
 
 //ALL
+// async function prod() {
+//   try {
+//     var allProducts = [];
+
+//     await allProducts.push(adresseProducts(eshopAdresse))
+//     await allProducts.push(dedicatedProducts(eshopDedicated))
+//     await allProducts.push(mudJeansProducts(eshopMudJeans))
+//     return allProducts;
+//     } catch (e) {
+//     console.error(e);
+//     process.exit(1);
+//   }
+// };
+
 async function prod() {
   try {
     var allProducts = [];
@@ -108,7 +122,7 @@ async function prod() {
     await allProducts.push(adresseProducts(eshopAdresse))
     await allProducts.push(dedicatedProducts(eshopDedicated))
     await allProducts.push(mudJeansProducts(eshopMudJeans))
-    console.log(allProducts);
+    console.log(await allProducts);
     return allProducts;
     } catch (e) {
     console.error(e);
