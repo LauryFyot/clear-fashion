@@ -6,8 +6,9 @@ let currentProducts = [];
 let currentPagination = {};
 let currentFilters = {brand:"all", reasonable: false, recent:false, sort:"null"};
 let favoriteProducts = [];
+let allProducts
 
-// inititiqte selectors
+// selectors
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 const selectBrand = document.querySelector('#brand-select');
@@ -116,9 +117,6 @@ const applyfilter = (products, filters) => {
     else if (filters.sort=="date-asc") {afterproducts.sort((a, b) => (new Date(a.released) > new Date(b.released)) ? -1 : 1)}
     else if (filters.sort=="date-desc") {afterproducts.sort((a, b) => (new Date(a.released) > new Date(b.released)) ? 1 : -1)}
   };
-
-  console.log(afterproducts);
-
   return afterproducts;
 };
 
@@ -138,9 +136,14 @@ const renderProducts = (products, filters) => {
   div.className = "product-item";
   var template = afterproducts
     .map(product => {
+      //Add https when missing
+      if (product.photo.includes("http") == false) {
+        product.photo = "https:"+product.photo;
+      }
+      //Create html
       return `
       <div class="product" id=${product.uuid} alt=${product.brand}>
-      <img class="product-img" src="${product.photo}">
+      <img class="product-img" id=${product.uuid} src=${product.photo}>
         <div class="product-desc">
           <span class="product-brand">${product.brand}</span>
           <a href="${product.link}"  class="product-name">${product.name}</a>
@@ -152,7 +155,7 @@ const renderProducts = (products, filters) => {
     })
     .join('');
 
-  //Si aucun produit
+  //If no product
   if (afterproducts.length==0){
     template = `<div class="noproduct">
                   <p>Il n'y a pas de produits correspondant à votre rechrche sur cette page :(<br>Rendez-vous à la page suivante !</p>
@@ -171,26 +174,25 @@ const renderProducts = (products, filters) => {
       item.checked = true;
     };
   });
-  var a = document.getElementById("products").querySelectorAll('.product-img').forEach(item => {
-    console.log(item);
-  });
 
   //Add event listener on fav's checkboxes
+  var k = document.getElementById("nbfavtext");
   fav = document.getElementById("products").querySelectorAll('.fav-check').forEach(item => {
     item.addEventListener("click", event => {
       var p = findProductByUuid(currentProducts,event.target.value);
       if (event.target.checked) {
         favoriteProducts.push(p);
         item.parentElement.style.color="rgb(201, 96, 47)";
+        k.innerText = favoriteProducts.length;
       }
       else {
         favoriteProducts = favoriteProducts.filter(k => k.uuid != event.target.value);
         item.parentElement.style.color="black";
+        k.innerText = favoriteProducts.length;
       }
     });
   });
 
-  console.log(afterproducts);
 };
 
 /**
@@ -214,6 +216,7 @@ const renderPagination = pagination => {
  * @param  {Object} pagination
  */
 const renderIndicatorsPagination = (pagination) => {
+  // console.log(pagination);
   const {count} = pagination;
   spanNbProducts.innerHTML = count;
 };
@@ -225,17 +228,18 @@ const renderIndicatorsPagination = (pagination) => {
  */
 const renderIndicatorsProducts = (products, filters) => {
   var productscopy = Object.assign([], products);
-  var p = applyfilter(products, filters);
+  var p = applyfilter(productscopy, filters);
   spanNbDisplayedProducts.innerHTML = p.length;  
-  p50.innerHTML = percentile(products,0.5).price;
-  p90.innerHTML = percentile(products,0.9).price;
-  p95.innerHTML = percentile(products,0.95).price;
+  p50.innerHTML = percentile(productscopy,0.5).price;
+  p90.innerHTML = percentile(productscopy,0.9).price;
+  p95.innerHTML = percentile(productscopy,0.95).price;
   lastRelease.innerHTML = productscopy.sort((a, b) => (new Date(a.released) > new Date(b.released)) ? -1 : 1)[0].released;
 };
 
 const render = (products, pagination, filters) => {
+  var p = Object.assign({}, pagination)
   renderPagination(pagination);
-  renderIndicatorsPagination(products, pagination);
+  renderIndicatorsPagination(pagination);
   renderIndicatorsProducts(products, filters);
   renderProducts(products, filters);
 };
@@ -311,23 +315,6 @@ document.addEventListener('DOMContentLoaded', () =>
 
 
 
-function displayCheck(event) {
-  var p = findProductByUuid(currentProducts,event.target.value);
-  console.log(event.target.value);
-  if (event.target.checked) {
-    favoriteProducts.push(p);
-    console.log(event.target.checked);
-    console.log(favoriteProducts);
-  }
-  else {
-    favoriteProducts = favoriteProducts.filter(k => k.uuid != event.target.value);
-    console.log(event.target.checked);
-    console.log(favoriteProducts);
-  }
-};
-
-
-
 
 
 
@@ -375,30 +362,4 @@ function displayCheck(event) {
       var logo = document.getElementById("navbar-logo");
       this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
       this.scrollY > 20 ? logo.style.display = "none" : logo.style.display = "block";
-      // this.scrollY > 20 ? navbar.style.backgroundColor = white : console.log("coucou");
   }
-
-
-  //FILTER
-  // const filterContainer = document.querySelector(".gallery-filter"),
-  //   galleryItems = document.querySelectorAll(".gallery-item");
-
-  //   filterContainer.addEventListener("click", (event) =>{
-  //   if(event.target.classList.contains("filter-item")){
-  //       // deactivate existing active 'filter-item'
-  //       filterContainer.querySelector(".active").classList.remove("active");
-  //       // activate new 'filter-item'
-  //       event.target.classList.add("active");
-  //       const filterValue = event.target.getAttribute("data-filter");
-  //       galleryItems.forEach((item) =>{
-  //       if(item.classList.contains(filterValue) || filterValue === 'all'){
-  //           item.classList.remove("hide");
-  //           item.classList.add("show");
-  //       }
-  //       else{
-  //           item.classList.remove("show");
-  //           item.classList.add("hide");
-  //       }
-  //       });
-  //   }
-  //   });

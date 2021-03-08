@@ -8,8 +8,8 @@ const cheerio = require('cheerio');
  */
 const parsepages = data => {
     const $ = cheerio.load(data);
-    return $('.mainNavigation-link-subMenu-link a').map((i, element) => {
-        var endURL = $(element).attr('href');
+    return $('.header-nav-list').map((i, element) => {
+        var endURL = $(element).find('.header-nav-link').attr('href');
         return {endURL};
     })
     .get();
@@ -41,26 +41,26 @@ module.exports.scrapepages = async url => {
 const parseproducts = data => {
   const $ = cheerio.load(data);
 
-  return $('.productList-container .productList')
+  return $('.product-link')
     .map((i, element) => {
-      // console.log(element);
+    //   console.log(element);
       const name = $(element)
-        .find('.productList-title')
-        .text()
-        .trim()
-        .replace(/\s/g, ' ');
+        .find('.product-title')
+        .find('a')
+        .text();
       const price = parseInt(
         $(element)
-          .find('.productList-price')
+          .find('.product-price-prepend')
           .text()
       );
       const photo = $(element)
-        .find('.productList-image')
+        .find('.img')
         .find('img')
         .attr('src');
-      const brand = 'dedicated';
+      const brand = 'mudjeans';
       const link = $(element)
-      .find('.productList-link')
+      .find('.product-title')
+      .find('a')
       .attr('href');
       return {name, price, photo, brand, link};
     })
