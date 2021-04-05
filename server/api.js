@@ -31,7 +31,7 @@ app.options('*', cors());
 
 app.get('/', (request, response) => {
   console.log("hello route");
-  response.send({'ack': true});
+  response.send({'ack2': true});
 });
 
 app.get('/product/:id', async (request, response) => {
