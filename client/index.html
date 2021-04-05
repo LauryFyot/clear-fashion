@@ -8,6 +8,12 @@
     <title>👕 Clear Fahion | Environmentally & human-friendly clothes</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://kit.fontawesome.com/7be63d8904.js" crossorigin="anonymous"></script>
+    <!-- <script>
+      const myFunction = () => {
+        var mon_url = document.getElementById().getAttribute('src');
+        window.open(mon_url);
+      }
+    </script> -->
 </head>
   <body>
     <nav class="navbar">
@@ -33,8 +39,9 @@
                   <option value="eur">Eur</option>
                   <option value="usd">Usd</option>
               </select>
+              <!-- onClick="window.open('http://www.example.com');" -->
+              <!-- onclick="myFunction()"  -->
               <i class="far fa-user"></i>
-              <!-- <i class="fas fa-shopping-cart"></i>fa fa-heart -->
               <div class="favs">
                 <i class="fa fa-heart"></i>
                 <div class="nbfav">
@@ -61,47 +68,51 @@
 
   <section class="gallery">
     <div class="content">
-      <h2 class="section-title">Products</h2>
-      <div class="filters">
-        <div class="chkxfilter">
-          <input type="checkbox" id="reasonable-check">
-          <label for="reasonable-check">Reasonable price</label>
+        <h2 class="section-title">Products</h2>
+        <div class="filters">
+            <div class="chkxfilter-container">
+                <div class="chkxfilter">
+                <input type="checkbox" id="reasonable-check">
+                <label for="reasonable-check" class="show-select">Reasonable price</label>
+                </div>
+                <div class="chkxfilter">
+                <input type="checkbox" id="recent-check">
+                <label for="recent-check" class="show-select">Recently released</label>
+                </div>
+            </div>
+            
+            <div class="selectfilter-container">
+                <div id="brand">
+                <!-- <label for="brand-select" id="ui">By brands:</label> -->
+                <select name="brand" id="brand-select" class="select">
+                    <option value="all">All brands</option> 
+                    <option value="loom">Loom</option>
+                    <option value="adresse">Adresse</option>
+                    <option value="coteleparis">Cotele Paris</option>
+                    <option value="1083">1083</option>
+                    <option value="dedicated">Dedicated</option>
+                </select>
+                </div>
+                <div id="sort">
+                <!-- <label for="sort-select">Sort:</label> -->
+                <select name="sort" id="sort-select" class="select">
+                    <option value="null">Sort by ...</option>
+                    <option value="price-asc">Cheaper</option>
+                    <option value="price-desc">Expensive</option>
+                    <option value="date-asc">Recently released</option>
+                    <option value="date-desc">Anciently released</option>
+                </select>
+                </div>
+                <div id="show">
+                <label for="show-select" class="show-select">Show:</label>
+                <select name="show" id="show-select" class="select">
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="48">48</option>
+                </select>
+                </div>
+            </div>
         </div>
-        <div class="chkxfilter">
-          <input type="checkbox" id="recent-check">
-          <label for="recent-check">Recently released</label>
-        </div>
-        <div id="brand">
-          <!-- <label for="brand-select" id="ui">By brands:</label> -->
-          <select name="brand" id="brand-select" class="select">
-            <option value="all">All brands</option> 
-            <option value="loom">Loom</option>
-            <option value="adresse">Adresse</option>
-            <option value="coteleparis">Cotele Paris</option>
-            <option value="1083">1083</option>
-            <option value="dedicated">Dedicated</option>
-          </select>
-        </div>
-        <div id="sort">
-          <!-- <label for="sort-select">Sort:</label> -->
-          <select name="sort" id="sort-select" class="select">
-            <option value="null">Sort by ...</option>
-            <option value="price-asc">Cheaper</option>
-            <option value="price-desc">Expensive</option>
-            <option value="date-asc">Recently released</option>
-            <option value="date-desc">Anciently released</option>
-          </select>
-        </div>
-        <div id="show">
-          <label for="show-select" class="show-select">Show:</label>
-          <select name="show" id="show-select" class="select">
-            <option value="12">12</option>
-            <option value="24">24</option>
-            <option value="48">48</option>
-          </select>
-        </div>
-
-      </div>
         
         <div class="container">
             <!-- <div class="row-gallery">
@@ -116,41 +127,14 @@
             </div> -->
             <div id="products">
             </div>
+            <div id="page">
+                <label for="page-select" class="show-select">Go to page:</label>
+                <select name="page" id="page-select" class="select"> </select>
+            </div>
         </div>
     </div>
+    
 </section>
-    <h1>Clear fashion</h1>
-    <section id="options">
-      <!-- <div id="show">
-        <label for="show-select">Show:</label>
-        <select name="show" id="show-select">
-          <option value="12">12</option>
-          <option value="24">24</option>
-          <option value="48">48</option>
-        </select>
-      </div> -->
-      <div id="page">
-        <label for="page-select">Go to page:</label>
-        <select name="page" id="page-select"> </select>
-      </div>
-      <div id="filters">
-        <!-- <label for="reasonable-check">By reasonable price</label>
-        <input type="checkbox" id="reasonable-check">
-        <label for="recent-check">By recently released</label>
-        <input type="checkbox" id="recent-check"> -->
-        <!-- <div id="brand">
-          <label for="brand-select" id="ui">By brands:</label>
-          <select name="brand" id="brand-select">
-            <option value="all">All</option> 
-            <option value="loom">Loom</option>
-            <option value="adresse">Adresse</option>
-            <option value="coteleparis">Cotele Paris</option>
-            <option value="1083">1083</option>
-            <option value="dedicated">Dedicated</option>
-          </select>
-        </div> -->
-      </div>
-    </section>
     <section id="indicators">
       <h2>Indicators</h2>
       <div>

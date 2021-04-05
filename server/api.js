@@ -46,7 +46,6 @@ const getMetaData = async (page, size, q) => {
   const db =  client.db(MONGODB_DB_NAME);
   const collection = db.collection('products');
   const nb = q.length;
-  //onst nb=4;
   const pageCount = parseInt(nb/size);
   return {"currentPage" : page,"pageCount":pageCount,"pageSize":size,"count":nb} 
 }
