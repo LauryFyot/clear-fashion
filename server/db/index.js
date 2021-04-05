@@ -65,7 +65,7 @@ module.exports.find = async query => {
     const collection = db.collection(MONGODB_COLLECTION);
     const result = await collection.find(query).toArray();
     
-    console.log('result find'+result);
+    // console.log('result find'+result);
     return result;
   } catch (error) {
     console.error('🚨 collection.find...', error);
@@ -83,7 +83,7 @@ module.exports.find = async query => {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
     const result = await collection.aggregate(query).toArray();
-    console.log('result aggregate'+result);
+    // console.log('result aggregate'+result);
     return result;
   } catch (error) {
     console.error('🚨 collection.aggregate...', error);

@@ -135,9 +135,10 @@ app.get('/products/search', async (request, response)=>{
   let res_products = {
     "success" : true,
     "data" : {
-    "result" : products,
-    "meta": meta
-    }}
+      "result" : products,
+      "meta": meta
+    }
+  }
 
 response.send(res_products);
 });
