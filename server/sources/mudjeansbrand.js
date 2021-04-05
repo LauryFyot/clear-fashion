@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const {'v5': uuidv5} = require('uuid');
 
 /**
  * Parse webpage e-shop
@@ -43,16 +44,13 @@ const parseproducts = data => {
 
   return $('.product-link')
     .map((i, element) => {
-    //   console.log(element);
       const name = $(element)
         .find('.product-title')
         .find('a')
         .text();
-      const price = parseInt(
-        $(element)
-          .find('.product-price-prepend')
-          .text()
-      );
+      const price = $(element)
+          .find('.product-price')
+          .text();
       const photo = $(element)
         .find('.img')
         .find('img')
@@ -62,7 +60,8 @@ const parseproducts = data => {
       .find('.product-title')
       .find('a')
       .attr('href');
-      return {name, price, photo, brand, link};
+      const uuid = uuidv5(String(link), uuidv5.URL);
+      return {uuid, name, price, photo, brand, link};
     })
     .get();
 };

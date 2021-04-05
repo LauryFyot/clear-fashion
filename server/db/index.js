@@ -9,6 +9,7 @@ const MONGODB_URI = 'mongodb+srv://WebAPPUser:WebAPPUser@webapp.gteyh.mongodb.ne
 let client = null;
 let database = null;
 
+
 /**
  * Get db connection
  * @type {MongoClient}
@@ -16,10 +17,11 @@ let database = null;
 const getDB = module.exports.getDB = async () => {
   try {
     if (database) {
+      console.log('💽  Already Connected');
       return database;
     }
 
-    client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true}, { 'useUnifiedTopology': true });
+    client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true, 'useUnifiedTopology': true});
     database = client.db(MONGODB_DB_NAME);
 
     console.log('💽  Connected');
@@ -40,8 +42,6 @@ module.exports.insert = async products => {
   try {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
-    // More details
-    // https://docs.mongodb.com/manual/reference/method/db.collection.insertMany/#insert-several-document-specifying-an-id-field
     const result = await collection.insertMany(products, {'ordered': false});
 
     return result;
@@ -64,10 +64,29 @@ module.exports.find = async query => {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
     const result = await collection.find(query).toArray();
-
+    
+    console.log('result find'+result);
     return result;
   } catch (error) {
     console.error('🚨 collection.find...', error);
+    return null;
+  }
+};
+
+/**
+ * Find products based on query
+ * @param  {Array}  query
+ * @return {Array}
+ */
+ module.exports.aggregate = async query => {
+  try {
+    const db = await getDB();
+    const collection = db.collection(MONGODB_COLLECTION);
+    const result = await collection.aggregate(query).toArray();
+    console.log('result aggregate'+result);
+    return result;
+  } catch (error) {
+    console.error('🚨 collection.aggregate...', error);
     return null;
   }
 };

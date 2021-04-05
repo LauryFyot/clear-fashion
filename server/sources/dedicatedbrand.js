@@ -63,7 +63,8 @@ const parseproducts = data => {
       const link = $(element)
       .find('.productList-link')
       .attr('href');
-      return {name, price, photo, brand, link};
+      const uuid = uuidv5(String(link), uuidv5.URL);
+      return {uuid, name, price, photo, brand, link};
     })
     .get();
 };

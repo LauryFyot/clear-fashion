@@ -7,7 +7,7 @@ const eshopDedicated = 'https://www.dedicatedbrand.com';
 const eshopAdresse = 'https://adresse.paris/630-toute-la-collection?id_category=630&n=109';
 const eshopMudJeans = 'https://mudjeans.eu/';
 
-const productsExport = [];
+var productsExport = [];
 
 //DEDICATED
 async function dedicatedProducts (eshop) {
@@ -25,16 +25,17 @@ async function dedicatedProducts (eshop) {
     
     //For each page scrap all products
     for (const url of allMainURLs) {
-      console.log(`🕵️‍♀️  browsing ${url} ...`);
+      // console.log(`🕵️‍♀️  browsing ${url} ...`);
       var products = await dedicatedbrand.scrapeproducts(url);
       for (const product of products) {
         product.link = eshop+product.link;
         allProducts.push(product);
+        productsExport.push(product);
       };
     };
 
-    console.log(allProducts)
-    console.log(allProducts.length)
+    // console.log(allProducts)
+    // console.log(allProducts.length)
     return allProducts;
     } catch (e) {
     console.error(e);
@@ -50,12 +51,13 @@ async function adresseProducts(eshop) {
 
     var products = await adressebrand.scrapeproducts(eshop);
       for (const product of products) {
-        product.link = eshop+product.link;
+        // product.link = eshop+product.link;
         allProducts.push(product);
+        productsExport.push(product);
       };
 
-    console.log(allProducts);
-    console.log(allProducts.length);
+    // console.log(allProducts);
+    // console.log(allProducts.length);
     return allProducts;
     } catch (e) {
     console.error(e);
@@ -81,48 +83,35 @@ async function mudJeansProducts(eshop) {
     
     //For each page scrap all products
     for (const url of allMainURLs) {
-      console.log(`🕵️‍♀️  browsing ${url} ...`);
+      // console.log(`🕵️‍♀️  browsing ${url} ...`);
       var products = await mudjeansbrand.scrapeproducts(url);
       for (const product of products) {
+        const regexp = /\d+(?:\,\d+)?/g;
+        const array = [...product.price.matchAll(regexp)];
+        product.price = parseInt(array[0][0]);
+        product.photo = 'https:'+product.photo;
         product.link = eshop+product.link;
         allProducts.push(product);
+        productsExport.push(product);
       };
     };
 
-    console.log(allProducts)
-    console.log(allProducts.length)
+    // console.log(allProducts)
+    // console.log(allProducts.length)
     return allProducts;
     } catch (e) {
     console.error(e);
     process.exit(1);
   }
 };
-
-// adresseProducts(eshopAdresse);
-
-//ALL
-// async function prod() {
-//   try {
-//     var allProducts = [];
-
-//     await allProducts.push(adresseProducts(eshopAdresse))
-//     await allProducts.push(dedicatedProducts(eshopDedicated))
-//     await allProducts.push(mudJeansProducts(eshopMudJeans))
-//     return allProducts;
-//     } catch (e) {
-//     console.error(e);
-//     process.exit(1);
-//   }
-// };
 
 async function prod() {
   try {
     var allProducts = [];
-
-    await allProducts.push(adresseProducts(eshopAdresse))
-    await allProducts.push(dedicatedProducts(eshopDedicated))
-    await allProducts.push(mudJeansProducts(eshopMudJeans))
-    console.log(await allProducts);
+    var a = await adresseProducts(eshopAdresse);
+    var b = await dedicatedProducts(eshopDedicated);
+    var c = await mudJeansProducts(eshopMudJeans);
+    allProducts = allProducts.concat(a, b, c);
     return allProducts;
     } catch (e) {
     console.error(e);
@@ -130,7 +119,7 @@ async function prod() {
   }
 };
 
-prod();
-// module.exports.dedicatedProducts = () => {
-//   return prod();
-// };
+module.exports.scrapeAllProducts = () => {
+  console.log('lalala');
+  return prod();
+};

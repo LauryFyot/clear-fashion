@@ -8,31 +8,31 @@ const {'v5': uuidv5} = require('uuid');
  * @return {Object} restaurant
  */
 const parse = data => {
-  const $ = cheerio.load(data, {'xmlMode': true});
+  const $ = cheerio.load(data);
 
-  return $('.product-grid__item')
+  return $('.productList-container .productList')
     .map((i, element) => {
-      const link = `https://www.loom.fr${$(element)
-        .find('.product-title a')
+      const link = `https://www.dedicatedbrand.com${$(element)
+        .find('.productList-link')
         .attr('href')}`;
 
       return {
         link,
-        'brand': 'loom',
+        'brand': 'dedicated',
         'price': parseInt(
           $(element)
-            .find('.money')
+            .find('.productList-price')
             .text()
         ),
         'name': $(element)
-          .find('.product-title')
+          .find('.productList-title')
           .text()
           .trim()
           .replace(/\s/g, ' '),
         'photo': $(element)
-          .find('noscript img.product_card__image')
+          .find('.productList-image img')
           .attr('src'),
-        'uuid': uuidv5(link, uuidv5.URL)
+        '_id': uuidv5(link, uuidv5.URL)
       };
     })
     .get();
