@@ -17,5 +17,11 @@
         "dest": "api.js",
         "methods": ["GET"]
     }
+    ,
+    {
+        "src": "/products/searchall",
+        "dest": "api.js",
+        "methods": ["GET"]
+    }
   ]
 }

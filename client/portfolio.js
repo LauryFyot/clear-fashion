@@ -13,7 +13,7 @@ const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 const selectBrand = document.querySelector('#brand-select');
 const selectReasonable = document.querySelector('#reasonable-check');
-const selectRecent = document.querySelector('#recent-check');
+// const selectRecent = document.querySelector('#recent-check');
 const selectSort = document.querySelector('#sort-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
@@ -22,7 +22,7 @@ const p50 = document.querySelector('#p50');
 const p90 = document.querySelector('#p90');
 const p95 = document.querySelector('#p95');
 var fav = document.querySelectorAll('.fav-check');
-var lastRelease = document.querySelector('#last-release');
+// var lastRelease = document.querySelector('#last-release');
 
 
 /**
@@ -37,15 +37,16 @@ const setCurrentProducts = ({result, meta}) => {
 
 /**
  * Fetch products from api
- * @param  {Number}  [page=1] - current page to fetch
+ * @param  {Number}  [page=0] - current page to fetch
  * @param  {Number}  [size=12] - size of the page
  * @return {Object}
  */
-const fetchProducts = async (page = 1, size = 12) => {
+const fetchProducts = async (page = 0, size = 12) => {
   try {
     const response = await fetch(
       // `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
-      `http://localhost:8092/products/search?page=${page}&size=${size}`
+      // `http://localhost:8092/products/searchall?page=${page}&size=${size}`
+      `https://webapp-ruby-five.vercel.app/products/searchall?page=${page}&size=${size}`
     );
     const body = await response.json();
 
@@ -54,6 +55,8 @@ const fetchProducts = async (page = 1, size = 12) => {
       return {currentProducts, currentPagination};
     }
 
+    // console.log('type :'+JSON.stringify(body.data));
+    
     return body.data;
   } catch (error) {
     console.error(error);
@@ -128,6 +131,7 @@ const applyfilter = (products, filters) => {
  * @param  {Array} products
  */
 const renderProducts = (products, filters) => {
+  // console.log('products :'+products);
   //Applaying filters
   var afterproducts = applyfilter(products, filters);
 
@@ -138,7 +142,7 @@ const renderProducts = (products, filters) => {
   var template = afterproducts
     .map(product => {
       //Add https when missing
-      if (product.photo.includes("http") == false) {
+      if (product.photo != null && product.photo.includes("http") == false) {
         product.photo = "https:"+product.photo;
       }
       //Create html
@@ -231,10 +235,12 @@ const renderIndicatorsProducts = (products, filters) => {
   var productscopy = Object.assign([], products);
   var p = applyfilter(productscopy, filters);
   spanNbDisplayedProducts.innerHTML = p.length;  
-  p50.innerHTML = percentile(productscopy,0.5).price;
-  p90.innerHTML = percentile(productscopy,0.9).price;
-  p95.innerHTML = percentile(productscopy,0.95).price;
-  lastRelease.innerHTML = productscopy.sort((a, b) => (new Date(a.released) > new Date(b.released)) ? -1 : 1)[0].released;
+  if (percentile(productscopy,0.5) != undefined){
+    p50.innerHTML = percentile(productscopy,0.5).price;
+    p90.innerHTML = percentile(productscopy,0.9).price;
+    p95.innerHTML = percentile(productscopy,0.95).price;
+    // lastRelease.innerHTML = productscopy.sort((a, b) => (new Date(a.released) > new Date(b.released)) ? -1 : 1)[0].released;
+  }
 };
 
 const render = (products, pagination, filters) => {
@@ -275,16 +281,16 @@ selectBrand.addEventListener('change', event => {
 });
 
 //Select the recent products
-selectRecent.addEventListener('change', event => {
-  if(event.target.checked) {
-    currentFilters.recent=true;
-  } else {
-    currentFilters.recent=false;
-  };
-  fetchProducts(currentPagination.currentPage, selectShow.value)
-    .then(setCurrentProducts)
-    .then(() => render(currentProducts, currentPagination, currentFilters));
-});
+// selectRecent.addEventListener('change', event => {
+//   if(event.target.checked) {
+//     currentFilters.recent=true;
+//   } else {
+//     currentFilters.recent=false;
+//   };
+//   fetchProducts(currentPagination.currentPage, selectShow.value)
+//     .then(setCurrentProducts)
+//     .then(() => render(currentProducts, currentPagination, currentFilters));
+// });
 
 //Select the reasonable price
 selectReasonable.addEventListener('change', event => {
@@ -313,26 +319,6 @@ document.addEventListener('DOMContentLoaded', () =>
     .then(setCurrentProducts)
     .then(() => render(currentProducts, currentPagination, currentFilters))
 );
-
-
-
-
-
-
-
-
-
-
-
-
-// products.forEach((el) => {console.log(el.price);})
-  // p50.innerHTML = percentile(products, .50).price;
-  // p90.innerHTML = percentile(products, .90).price;
-  // p95.innerHTML = percentile(products, .95).price;
-
-
-
-
 
 
 

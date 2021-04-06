@@ -74,6 +74,24 @@ module.exports.find = async query => {
 };
 
 /**
+ * Find object products based on query
+ * @param  {Array}  query
+ * @return {Array}
+ */
+module.exports.findByPage = async (query, whichpage, size) => {
+  try {
+    const db = await getDB();
+    const collection = db.collection(MONGODB_COLLECTION);
+    const result = await collection.aggregate(query).skip(whichpage).limit(size).toArray()
+    
+    return result;
+  } catch (error) {
+    console.error('🚨 collection.findObj...', error);
+    return null;
+  }
+};
+
+/**
  * Find products based on query
  * @param  {Array}  query
  * @return {Array}
